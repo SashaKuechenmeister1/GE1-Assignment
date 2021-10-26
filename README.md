@@ -11,5 +11,6 @@ displayed on/through a procedurally generated terrain. <br />
 
 # References
 Guides to Procedural Generation
-https://www.red-gate.com/simple-talk/development/dotnet-development/procedural-generation-unity-c/ <br />
+https://www.red-gate.com/simple-talk/development/dotnet-development/procedural-generation-unity-c/
+<br />
 https://gamedevacademy.org/complete-guide-to-procedural-level-generation-in-unity-part-1/
