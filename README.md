@@ -10,7 +10,6 @@ on creating an awe inspiring audio visualiser which will be <br />
 displayed on/through a procedurally generated terrain. <br />
 
 # References
-Guides to Procedural Generation
+Guides to Procedural Generation <br />
 https://www.red-gate.com/simple-talk/development/dotnet-development/procedural-generation-unity-c/
-<br />
 https://gamedevacademy.org/complete-guide-to-procedural-level-generation-in-unity-part-1/
