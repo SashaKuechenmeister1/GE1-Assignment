@@ -6,8 +6,8 @@ Student Number: C18404082
 # Description of the project
 
 For my 2021-2022 Games Engine 1 assignnment I am planning <br />
-on creating an awe inspiring audio visualiser which will be <br />
-displayed on/through a procedurally generated terrain. <br />
+on creating an awe inspiring procedurally generated <br />
+remote islane with nice nature sounds such as birds singing, etc. <br />
 
 # References
 Guides to Procedural Generation <br />
