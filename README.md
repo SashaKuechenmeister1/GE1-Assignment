@@ -7,7 +7,7 @@ Student Number: C18404082
 
 For my 2021-2022 Games Engine 1 assignnment I am planning <br />
 on creating an awe inspiring procedurally generated <br />
-remote islane with nice nature sounds such as birds singing, etc. <br />
+remote island with nice nature sounds such as birds singing, etc. <br />
 
 # References
 Guides to Procedural Generation <br />
