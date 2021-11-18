@@ -166,15 +166,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec8005cebb467c4b9a4544cd2963881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapWidth: 95
-  mapHeight: 86
+  drawMode: 1
+  mapWidth: 100
+  mapHeight: 100
   noiseScale: 25
-  octaves: 4
-  persistance: 0.467
-  lacunarity: 6.09
-  seed: 21
-  offset: {x: 13.4, y: 6.52}
+  octaves: 5
+  persistance: 0.5
+  lacunarity: 2
+  seed: 0
+  offset: {x: 0, y: 0}
   autoUpdate: 1
+  regions:
+  - name: Deep Water
+    height: 0.3
+    colour: {r: 0.1254902, g: 0.33695468, b: 0.6901961, a: 0}
+  - name: Shallow Water
+    height: 0.4
+    colour: {r: 0.09411765, g: 0.43625012, b: 0.59607846, a: 0}
+  - name: Beach
+    height: 0.5
+    colour: {r: 0.7075472, g: 0.6896024, b: 0.377136, a: 0}
+  - name: Grass
+    height: 0.55
+    colour: {r: 0.10279457, g: 0.6226415, b: 0.18709068, a: 0}
+  - name: Hills
+    height: 0.7
+    colour: {r: 0.18867922, g: 0.14377747, b: 0.10679956, a: 0}
+  - name: Snow
+    height: 0.9
+    colour: {r: 0.1792453, g: 0.110588744, b: 0.08962265, a: 0}
+  - name: Snow
+    height: 1
+    colour: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 0}
 --- !u!4 &381433684
 Transform:
   m_ObjectHideFlags: 0
@@ -265,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 2116725424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 95, y: 1, z: 86}
+  m_LocalScale: {x: 100, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
