@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+// Adds a button to generate the Map in Unity
 [CustomEditor (typeof (MapGenerator))]
 public class MapGeneratorEditor : Editor {
 

@@ -171,13 +171,15 @@ MonoBehaviour:
   mapHeight: 100
   noiseScale: 25
   octaves: 5
-  persistance: 0.5
+  persistance: 0.504
   lacunarity: 2
   seed: 0
   offset: {x: 0, y: 0}
-  autoUpdate: 1
   regions:
   - name: Deep Water
+    height: 0.2
+    colour: {r: 0.11681202, g: 0.25847355, b: 0.7075472, a: 0}
+  - name: ' Water'
     height: 0.3
     colour: {r: 0.1254902, g: 0.33695468, b: 0.6901961, a: 0}
   - name: Shallow Water
@@ -186,18 +188,28 @@ MonoBehaviour:
   - name: Beach
     height: 0.5
     colour: {r: 0.7075472, g: 0.6896024, b: 0.377136, a: 0}
+  - name: Rocky Beach
+    height: 0.53
+    colour: {r: 0.5, g: 0.4994759, b: 0.4976415, a: 0}
   - name: Grass
-    height: 0.55
-    colour: {r: 0.10279457, g: 0.6226415, b: 0.18709068, a: 0}
+    height: 0.56
+    colour: {r: 0.06839624, g: 0.5, b: 0.13978937, a: 0}
+  - name: Snow
+    height: 0.6
+    colour: {r: 0.009344969, g: 0.2830189, b: 0.047939982, a: 0}
   - name: Hills
     height: 0.7
     colour: {r: 0.18867922, g: 0.14377747, b: 0.10679956, a: 0}
-  - name: Snow
-    height: 0.9
+  - name: Mountain
+    height: 0.8
     colour: {r: 0.1792453, g: 0.110588744, b: 0.08962265, a: 0}
+  - name: Mountain Peak
+    height: 0.9
+    colour: {r: 0.122641504, g: 0.09051249, b: 0.08214667, a: 0}
   - name: Snow
     height: 1
-    colour: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 0}
+    colour: {r: 1, g: 0.98039216, b: 0.98039216, a: 0}
+  autoUpdate: 1
 --- !u!4 &381433684
 Transform:
   m_ObjectHideFlags: 0
