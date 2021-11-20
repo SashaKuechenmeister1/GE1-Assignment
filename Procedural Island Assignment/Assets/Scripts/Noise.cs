@@ -15,8 +15,8 @@ public static class Noise {
 		System.Random prng = new System.Random (seed);
 		Vector2[] octaveOffsets = new Vector2[octaves];
 		for (i = 0; i < octaves; i++) {
-			float offsetX = prng.Next (-100000, 100000) + offset.x;
-			float offsetY = prng.Next (-100000, 100000) + offset.y;
+			float offsetX = prng.Next (-10000, 10000) + offset.x;
+			float offsetY = prng.Next (-10000, 10000) + offset.y;
 			octaveOffsets [i] = new Vector2 (offsetX, offsetY);
 		}
 
@@ -39,7 +39,7 @@ public static class Noise {
 				float frequency = 1; 
 				float noiseHeight = 0;
 
-				// when chaning noise Scale, focuses to center rather than top-right corner
+				// when changing noise Scale, focuses to center rather than top-right corner
 				for (i = 0; i < octaves; i++) {
 					float sampleX = (x - halfWidth) / scale * frequency + octaveOffsets[i].x;
 					float sampleY = (y - halfHeight) / scale * frequency + octaveOffsets[i].y;
