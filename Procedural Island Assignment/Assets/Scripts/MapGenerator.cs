@@ -10,8 +10,9 @@ public class MapGenerator : MonoBehaviour {
 	int x;
 	int y;
 
-	public int mapWidth; // map Width
-	public int mapHeight; // map Height
+	const int mapChunkSize = 241; // map height & width
+	[Range(0,6)]
+	public int levelOfDetail;
 
 	public float noiseScale; // number that determines at what distance to have perlin noise
 	public int octaves; // number that determines the levels of detail
@@ -23,20 +24,23 @@ public class MapGenerator : MonoBehaviour {
 	public Vector2 offset;
 	public TerrainType[] regions; // allows different terrain types
 
+	public float meshHeightMultiplier;
+	public AnimationCurve meshHeightCurve;
+
 	public bool autoUpdate; // saves last changed configuration
 
 	// generate the map
 	public void GenerateMap() {
-		float[,] noiseMap = Noise.GenerateNoiseMap (mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset);
+		float[,] noiseMap = Noise.GenerateNoiseMap (mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity, offset);
         
 		// sets colours to designated range (e.g. 0 -> 0.5 = water, 0.5 -> 1 = grass)
-        Color[] colourMap = new Color[mapWidth * mapHeight];
-        for (y = 0; y < mapHeight; y++) {
-            for (x = 0; x <mapWidth; x++) {
+        Color[] colourMap = new Color[mapChunkSize * mapChunkSize];
+        for (y = 0; y < mapChunkSize; y++) {
+            for (x = 0; x <mapChunkSize; x++) {
                 float currentHeight = noiseMap[x,y];
                 for (i = 0; i < regions.Length; i++) {
                     if (currentHeight <= regions[i].height) {
-                        colourMap[y * mapWidth + x] = regions[i].colour; // sets colour to regions range (e.g. 0 -> 0.5 = blue (water))
+                        colourMap[y * mapChunkSize + x] = regions[i].colour; // sets colour to regions range (e.g. 0 -> 0.5 = blue (water))
                         break;
                     }
                 }
@@ -49,23 +53,15 @@ public class MapGenerator : MonoBehaviour {
             display.DrawTexture (TextureGenerator.TextureFromHeightMap(noiseMap));
         }
         else if (drawMode == DrawMode.ColourMap) {
-            display.DrawTexture (TextureGenerator.TextureFromColourMap(colourMap, mapWidth, mapHeight));
+            display.DrawTexture (TextureGenerator.TextureFromColourMap(colourMap, mapChunkSize, mapChunkSize));
         }
 		else if (drawMode == DrawMode.Mesh) {
-			display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap), TextureGenerator.TextureFromColourMap(colourMap, mapWidth, mapHeight));
+			display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier, meshHeightCurve, levelOfDetail), TextureGenerator.TextureFromColourMap(colourMap, mapChunkSize, mapChunkSize));
 		}
 		
 	}
 
 	void OnValidate() {
-		// width cannot be less than 1
-		if (mapWidth < 1) {
-			mapWidth = 1;
-		}
-		// height cannot be less than 1
-		if (mapHeight < 1) {
-			mapHeight = 1;
-		}
 		// lacunarity cannot be less than 1
 		if (lacunarity < 1) {
 			lacunarity = 1;
