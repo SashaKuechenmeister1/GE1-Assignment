@@ -10,7 +10,7 @@ public class MapGenerator : MonoBehaviour {
 	int x;
 	int y;
 
-	const int mapChunkSize = 241; // map height & width
+	public const int mapChunkSize = 241; // map height & width
 	[Range(0,6)]
 	public int levelOfDetail;
 
@@ -22,12 +22,13 @@ public class MapGenerator : MonoBehaviour {
 
 	public int seed;
 	public Vector2 offset;
-	public TerrainType[] regions; // allows different terrain types
 
 	public float meshHeightMultiplier;
 	public AnimationCurve meshHeightCurve;
 
 	public bool autoUpdate; // saves last changed configuration
+
+	public TerrainType[] regions; // allows different terrain types
 
 	// generate the map
 	public void GenerateMap() {
