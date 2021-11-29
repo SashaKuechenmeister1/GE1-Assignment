@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class EndlessTerrain : MonoBehaviour {
 
-	const float scale = 5f;
+	const float scale = 2f;
 
 	const float viewerMove = 25f;
 	const float sqrViewerMove = viewerMove * viewerMove;
@@ -77,6 +77,7 @@ public class EndlessTerrain : MonoBehaviour {
 
 		MeshRenderer meshRenderer;
 		MeshFilter meshFilter;
+		MeshCollider meshCollider;
 
 		LODInfo[] detailLevels;
 		LODMesh[] lodMeshes;
@@ -95,6 +96,7 @@ public class EndlessTerrain : MonoBehaviour {
 			meshObject = new GameObject("Terrain Chunk");
 			meshRenderer = meshObject.AddComponent<MeshRenderer>();
 			meshFilter = meshObject.AddComponent<MeshFilter>();
+			meshCollider = meshObject.AddComponent<MeshCollider>();
 			meshRenderer.material = material;
 
 			meshObject.transform.position = positionV3 * scale;
@@ -144,6 +146,7 @@ public class EndlessTerrain : MonoBehaviour {
 						if (lodMesh.hasMesh) {
 							previousLODIndex = lodIndex;
 							meshFilter.mesh = lodMesh.mesh;
+							meshCollider.sharedMesh = lodMesh.mesh;
 						}
 						else if (!lodMesh.hasRequestedMesh) {
 							lodMesh.RequestMesh(mapData);
@@ -196,5 +199,5 @@ public class EndlessTerrain : MonoBehaviour {
 	public struct LODInfo {
 		public int lod;
 		public float visibleDstThreshold; //once user is outside this threshold, it will switch over to the next LOD (lower res version)
-	}
+	} //
 }
