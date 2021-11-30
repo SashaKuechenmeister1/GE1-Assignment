@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using System.Threading;
 using System.Collections.Generic;
+using Random=UnityEngine.Random;
 
 public class MapGenerator : MonoBehaviour {
 
@@ -38,6 +39,11 @@ public class MapGenerator : MonoBehaviour {
 	public TerrainType[] regions; // allows different terrain types
 
 	float[,] falloffMap;
+
+	public GameObject treePrefab;
+
+	[Range(0, 5000)]
+	public int numberOfTrees;
 
 	Queue<MapThreadInfo<MapData>> mapDataThreadInfoQueue = new Queue<MapThreadInfo<MapData>>();
 	Queue<MapThreadInfo<MeshData>> meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
@@ -158,14 +164,79 @@ public class MapGenerator : MonoBehaviour {
 
 	}
 
+void Start () {
+	float[,] noiseMap = Noise.GenerateNoiseMap (mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity, offset, normalizeMode);
+
+
+	// Spawn Trees
+	Mesh mesh = GameObject.Find("Mesh").GetComponent<MeshFilter>().sharedMesh;
+
+	// Amount of regions that need trees
+	int treeRegions = 0;
+
+	// Loops through each region to check if it needs trees
+	for (int i = 0; i < regions.Length; i++) {
+		if (regions[i].trees) {
+			treeRegions++;
+		}
+	}
+
+	// How many trees each region needs based on the total number of available trees
+	int dividedTreeCount = numberOfTrees / treeRegions;
+
+	// Loops through all the regions
+	for (int i = 0; i < regions.Length; i++) {
+		// If current region has trees
+		if (regions[i].trees) {
+			/*
+			While the currect regions does not have all the trees, it will loop through all the vertices and check if that vertex is in the current region
+			and has a chance of placing a tree on it. It does this until all the trees are placed.
+			*/
+			while (regions[i].treeList.Count < dividedTreeCount) {
+				for (int y = 0; y < mapChunkSize; y++) {
+					for (int x = 0; x < mapChunkSize; x++) {
+						if (i == 0) {
+							if (noiseMap[x,y] < regions[i].height && noiseMap[x,y] > 0) {
+								float rand = Random.Range(0, 1000);
+								if (rand < 1 && regions[i].treeList.Count < dividedTreeCount) {
+								GameObject treeObject = Instantiate(treePrefab, mesh.vertices[((y * mapChunkSize) + x)] * 10, Quaternion.identity, GameObject.Find("Game_Manager").transform);
+								}	
+							}
+						}
+						else if (noiseMap[x,y] < regions[i].height && noiseMap[x,y] > regions[i - 1].height) {
+							float rand =  Random.Range(0, 1000);
+							if (rand < 1 && regions[i].treeList.Count < dividedTreeCount) {
+								GameObject treeObject = Instantiate(treePrefab, mesh.vertices[((y * mapChunkSize) + x)] * 10, Quaternion.identity, GameObject.Find("Game_Manager").transform);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+
+
 }
+
+}
+
+
 
 // Allows for different terrain types, heights and colours
 [System.Serializable]
 public struct TerrainType {
+	// Name of region
     public string name;
+	// The cutoff height of region
     public float height;
+	// Colour of region
     public Color colour;
+	// Add trees to region or not
+	public bool trees;
+	// List of trees to check count in region
+	public List<GameObject> treeList;
 }
 
 public struct MapData {
