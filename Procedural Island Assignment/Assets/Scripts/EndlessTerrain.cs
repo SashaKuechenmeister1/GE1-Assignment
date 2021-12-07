@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class EndlessTerrain : MonoBehaviour {
 
-	const float scale = 2f;
+	const float scale = 5f;
 
 	const float viewerMove = 25f;
 	const float sqrViewerMove = viewerMove * viewerMove;
