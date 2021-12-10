@@ -336,7 +336,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &3869052845218628173
 GameObject:
@@ -417,17 +417,14 @@ MonoBehaviour:
   growRate: 0.5
   shrinkRate: 0.05
   shrink: 0
-  rainS: {fileID: 7466353444043828921}
   hoverDistance: 120
   riseSpeed: 2
   texture: {fileID: 0}
   col: {r: 0.990566, g: 0.986828, b: 0.986828, a: 0}
-  water: {r: 0, g: 0, b: 0, a: 0}
   ground:
     serializedVersion: 2
     m_Bits: 512
   model: {fileID: 3869052845218628173}
-  rain: 0
 --- !u!1 &4209650298468746015
 GameObject:
   m_ObjectHideFlags: 0
