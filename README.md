@@ -51,7 +51,7 @@ The main variables that can be changed in the Map Generator are:
 9. auto update bool allows Unity to live update the mesh with each change that the user makes
 10. regions are structs that hold information about the colour map of the generated map. The user can create as many regions as they wish, assign them a colour and height between 0-1 (i.e. 0 = water, 1 = snow peak on a mountain)
 
-```
+```cs
 // enum which holds the different run modes: (2D noise map, 2D colour map, 3D Mesh, 3D Falloff map)
 public enum DrawMode {NoiseMap, ColourMap, Mesh, FalloffMap};
 // current mode the component is in
