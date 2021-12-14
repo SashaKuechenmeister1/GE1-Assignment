@@ -7,7 +7,15 @@ Student Number: C18404082
 Class Group: 
 
 # Description of the project
-
+The goal for my project was to create a procedurally generated island in Unity.  
+There is an editor section where the user can change different variables to create a completely unique island.  
+This can be done through changing any of the following:  
+1. create different regions (water, grass, snow, etc.)
+2. noise scale
+3. octaves
+4. persistance
+5. lacunarity
+6. height multiplier
 
 
 # Instructions for use
