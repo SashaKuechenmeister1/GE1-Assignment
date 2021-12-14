@@ -27,6 +27,26 @@ This is a procedural landmass generated using octaves of perlin noise. The islan
 The main variables that can be changed in the Map Generator are:
 1. choice to choose between 4 different modes of generating. The first two (noise and colour) generate 2D textures onto a plane (under the mesh), the third one creates a mesh using the first two textures applied to it, and the fourth one takes the third one and applies a falloff map to it (creates the island).  
 
+```cs
+public void DrawMapInEditor() {
+		MapData mapData = GenerateMapData(Vector2.zero);
+		// allows user to switch between viewing NoiseMap, ColourMap, Mesh and FalloffMap in Unity
+		MapDisplay display = FindObjectOfType<MapDisplay> ();
+		if (drawMode == DrawMode.NoiseMap) {
+			display.DrawTexture (TextureGenerator.TextureFromHeightMap (mapData.heightMap));
+		}
+		else if (drawMode == DrawMode.ColourMap) {
+			display.DrawTexture (TextureGenerator.TextureFromColourMap (mapData.colourMap, mapChunkSize, mapChunkSize));
+		}
+		else if (drawMode == DrawMode.Mesh) {
+			display.DrawMesh (MeshGenerator.GenerateTerrainMesh (mapData.heightMap, meshHeightMultiplier, meshHeightCurve, editorPreviewLOD), TextureGenerator.TextureFromColourMap (mapData.colourMap, mapChunkSize, mapChunkSize));
+		}
+		else if (drawMode == DrawMode.FalloffMap) {
+			display.DrawTexture(TextureGenerator.TextureFromHeightMap(FallOffGenerator.GenerateFalloffMap(mapChunkSize)));
+		}
+	}
+```
+
   - noise map
 <img src="https://user-images.githubusercontent.com/55543651/146084074-a1edb40e-4849-4096-b2f4-f6a9af8a1ed6.jpg" width="200">
 
@@ -49,32 +69,19 @@ The main variables that can be changed in the Map Generator are:
 7. the Seed and Offset can be used to randomise the location of the sample noise.
 8. the offset bool which allows for the generated map to be a landmass or an island (tick yes for island)
 9. auto update bool allows Unity to live update the mesh with each change that the user makes
-10. regions are structs that hold information about the colour map of the generated map. The user can create as many regions as they wish, assign them a colour and height between 0-1 (i.e. 0 = water, 1 = snow peak on a mountain)
+10. regions are structs that hold information about the colour map of the generated map. The user can create as many regions as they wish, assign them a colour and a cutoff height between 0-1 (i.e. 0 = water, 1 = snow peak on a mountain)
 
+Regions struct: 
 ```cs
-// enum which holds the different run modes: (2D noise map, 2D colour map, 3D Mesh, 3D Falloff map)
-public enum DrawMode {NoiseMap, ColourMap, Mesh, FalloffMap};
-// current mode the component is in
-public DrawMode drawMode;
-
-public float noiseScale; // number that determines at what distance to have perlin noise
-public int octaves; // number that determines the levels of detail
-[Range(0,1)] // changes persistance into a slider
-public float persistance; // number that determines how much detail is added or removed at each octave (adjusts frequency)
-public float lacunarity; // number that determines how much each octave contributes to the overall shape (adjusts amplitude)
-
-public int seed;
-public Vector2 offset; // vector for offsetting the seed
-
-public bool useFalloff; // option to use falloff map
-
-public float meshHeightMultiplier; // how much the Y-axis of the mesh is multiplied by
-public AnimationCurve meshHeightCurve; // curve that allows for customization of the height multiplication
-
-public bool autoUpdate; // saves last changed configuration
-
-
-public TerrainType[] regions; // allows for different terrain types
+[System.Serializable]
+public struct TerrainType {
+	// Name of region
+    public string name;
+	// The cutoff height of region
+    public float height;
+	// Colour of region
+    public Color colour;
+}
 
 ```
 
