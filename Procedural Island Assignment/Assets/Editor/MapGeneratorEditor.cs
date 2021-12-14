@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
-//Adds a button to generate the map in Unity
+// Adds a button to generate the map in Unity
 [CustomEditor (typeof (MapGenerator))]
 public class MapGeneratorEditor : Editor {
 

@@ -91,5 +91,8 @@ I am most proud of the clouds generation. I was able to spawn clouds in a given 
 I was also quite proud of the Day / Night Cycle even though it was quite simple. It adds another element to the scene by having two directional lights (sun and moon) rotate around the islands mesh. The sun allowed for some awe inspiring sunsets and sunrises.
 
 # Proposal submitted earlier can go here:
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
