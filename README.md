@@ -34,6 +34,24 @@ The main variables that can be changed in the Map Generator are:
   - colour map
 <img src="https://user-images.githubusercontent.com/55543651/146085063-7327f1f7-225b-487d-b557-913d174ad3d6.jpg" width="200">
 
+  - mesh
+<img src="https://user-images.githubusercontent.com/55543651/146084986-334fe9c9-865c-442b-8497-e64913d6258c.jpg" width="200">
+
+  - falloff map
+<img src="https://user-images.githubusercontent.com/55543651/146084085-484a3918-d483-4513-8282-85f1de2cd951.jpg" width="200">
+
+<br>
+
+2. the Noise scale which essentially zooms in and out of the noise map created.  
+3. the Octaves of Noise, this decides how many octaves of noise will be stacked on top of each other.  
+4. lacunarity which allows the user to increase the frequency / level of detail per octave.  
+5. Persistence which controls the amplitude / level of impact of later octaves.  
+6. Mesh Height Multiplier which works in tandem with the Mesh Height Curve. All mesh vertices y numbers are multiplied by the height multiplier. The height curve can then limit the multiplication of those y values based on their noise value. Essentially it allows the user to stop things like the water being bumpy
+7. the Seed and Offset can be used to randomise the location of the sample noise.
+8. the offset bool which allows for the generated map to be a landmass or an island (tick yes for island)
+9. auto update bool allows Unity to live update the mesh with each change that the user makes
+10. regions are structs that hold information about the colour map of the generated map. The user can create as many regions as they wish, assign them a colour and a cutoff height between 0-1 (i.e. 0 = water, 1 = snow peak on a mountain)
+
 code below creates the different regions through use of colour
 ```cs
 // sets colours to designated range (e.g. 0 -> 0.5 = water, 0.5 -> 1 = grass)
@@ -56,24 +74,6 @@ for (int y = 0; y < mapChunkSize; y++) {
 	}
 }
 ```
-
-  - mesh
-<img src="https://user-images.githubusercontent.com/55543651/146084986-334fe9c9-865c-442b-8497-e64913d6258c.jpg" width="200">
-
-  - falloff map
-<img src="https://user-images.githubusercontent.com/55543651/146084085-484a3918-d483-4513-8282-85f1de2cd951.jpg" width="200">
-
-<br>
-
-2. the Noise scale which essentially zooms in and out of the noise map created.  
-3. the Octaves of Noise, this decides how many octaves of noise will be stacked on top of each other.  
-4. lacunarity which allows the user to increase the frequency / level of detail per octave.  
-5. Persistence which controls the amplitude / level of impact of later octaves.  
-6. Mesh Height Multiplier which works in tandem with the Mesh Height Curve. All mesh vertices y numbers are multiplied by the height multiplier. The height curve can then limit the multiplication of those y values based on their noise value. Essentially it allows the user to stop things like the water being bumpy
-7. the Seed and Offset can be used to randomise the location of the sample noise.
-8. the offset bool which allows for the generated map to be a landmass or an island (tick yes for island)
-9. auto update bool allows Unity to live update the mesh with each change that the user makes
-10. regions are structs that hold information about the colour map of the generated map. The user can create as many regions as they wish, assign them a colour and a cutoff height between 0-1 (i.e. 0 = water, 1 = snow peak on a mountain)
 
 Regions struct: 
 ```cs
