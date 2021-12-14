@@ -29,17 +29,17 @@ The main variables that can be changed in the Map Generator are:
 
 <br>
 
-- noise map
+  - noise map
 <img src="https://user-images.githubusercontent.com/55543651/146084074-a1edb40e-4849-4096-b2f4-f6a9af8a1ed6.jpg" width="200">
 
 <br>
 
-- colour map
+  - colour map
 <img src="https://user-images.githubusercontent.com/55543651/146084098-81562bbb-8591-4f6e-a018-85c6b5e29adb.jpg" width="200">
 
 <br>
 
-- falloff map
+  - falloff map
 <img src="https://user-images.githubusercontent.com/55543651/146084085-484a3918-d483-4513-8282-85f1de2cd951.jpg" width="200">
 
 <br>
