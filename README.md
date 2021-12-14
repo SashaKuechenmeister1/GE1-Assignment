@@ -4,11 +4,11 @@ Name: Sasha Kuechenmeister
 
 Student Number: C18404082
 
-Class Group: 
+Class Group: TU857/4
 
 # Description of the project
 The goal for my project was to create a procedurally generated island in Unity.  
-The user can change different variables to generate a completely unique island.  
+The user can change different variables to generate a completely unique island or landmass.  
 This can be done through changing any of the following:  
 1. create different regions (water, grass, snow, etc.)
 2. noise scale
@@ -27,7 +27,18 @@ This section will discuss how everything works and examine some of the important
 
 ## Procedural Mesh
 This is a procedural landmass generated using octaves of perlin noise. The island is highly customizable in the Unity Editor through some custom editor scripts and variables available to the user in the Map Generator.  
-The first option in the Map Generator is having the choice to choose between 4 different modes of generating. The first two generate 2D textures onto a plane (under the mesh), the third one creates a mesh using the first two textures applied to it, and the fourth one takes the third one and applies a falloff map to it (creates the island).
+The first option in the Map Generator is having the choice to choose between 4 different modes of generating. The first two generate 2D textures onto a plane (under the mesh), the third one creates a mesh using the first two textures applied to it, and the fourth one takes the third one and applies a falloff map to it (creates the island).  
+
+[insert image]  
+
+The second option is the Noise scale which essentially zooms in and out of the noise map created.  
+The third variable is the Octaves of Noise, this decides how many octaves of noise will be stacked on top of each other.  
+The forth option is lacunarity which allows the user to increase the frequency / level of detail per octave.  
+Persistence is the 5th option which controls the amplitude / level of impact of later octaves.  
+
+[insert image]
+
+
 
 ## Clouds
 
