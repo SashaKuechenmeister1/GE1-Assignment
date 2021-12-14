@@ -7,6 +7,7 @@ public class OnPlay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // hides the preview mesh on play
         gameObject.SetActive (false);
     }
 

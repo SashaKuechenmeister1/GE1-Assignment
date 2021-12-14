@@ -19,6 +19,7 @@ public static class FallOffGenerator {
         return map;
     }
 
+    // affects the size of the generated island, i.e. makes the islands landmass larger
     static float Evaluate(float value) {
         float a = 3;
         float b = 2.2f;

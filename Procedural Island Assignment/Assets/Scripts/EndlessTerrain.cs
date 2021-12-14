@@ -4,22 +4,27 @@ using System.Collections.Generic;
 
 public class EndlessTerrain : MonoBehaviour {
 
+	// size of terrain generated 
 	const float scale = 5f;
-
-	const float viewerMove = 25f;
-	const float sqrViewerMove = viewerMove * viewerMove;
+	// threshold which makes viewer move before updating the chunks
+	const float viewerMoveThresholdForChunkUpdate = 25f;
+	const float sqrViewerMoveThresholdForChunkUpdate = viewerMoveThresholdForChunkUpdate * viewerMoveThresholdForChunkUpdate;
 
 	// array containing level of detail info
 	public LODInfo[] detailLevels;
 
 	// how far the viewer can see
 	public static float maxViewDst;
+
 	public Transform viewer;
 
 	public Material mapMaterial;
 
+	// viewer position
 	public static Vector2 viewerPosition;
+	// viewers old position
 	Vector2 viewerPositionOld;
+
 	static MapGenerator mapGenerator;
 
 	int chunkSize;
@@ -49,7 +54,8 @@ public class EndlessTerrain : MonoBehaviour {
 	void Update() {
 		viewerPosition = new Vector2 (viewer.position.x, viewer.position.z) / scale;
 
-		if ((viewerPositionOld-viewerPosition).sqrMagnitude > sqrViewerMove) {
+		// if true, updates visible chunks
+		if ((viewerPositionOld-viewerPosition).sqrMagnitude > sqrViewerMoveThresholdForChunkUpdate) {
 			viewerPositionOld = viewerPosition;
 			UpdateVisibleChunks ();
 		}
@@ -138,6 +144,7 @@ public class EndlessTerrain : MonoBehaviour {
 			SetVisible(false);
 
 			lodMeshes = new LODMesh[detailLevels.Length];
+			// create lod meshes
 			for (int i = 0; i < detailLevels.Length; i++) {
 				lodMeshes[i] = new LODMesh(detailLevels[i].lod, UpdateTerrainChunk);
 			}
@@ -149,6 +156,7 @@ public class EndlessTerrain : MonoBehaviour {
 			this.mapData = mapData;
 			mapDataReceived = true;
 
+			// creates texture
 			Texture2D texture = TextureGenerator.TextureFromColourMap(mapData.colourMap, MapGenerator.mapChunkSize, MapGenerator.mapChunkSize);
 			meshRenderer.material.mainTexture = texture;
 

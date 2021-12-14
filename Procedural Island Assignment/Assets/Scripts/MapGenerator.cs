@@ -49,6 +49,7 @@ public class MapGenerator : MonoBehaviour {
 	Queue<MapThreadInfo<MeshData>> meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
 
 	void Awake() {
+		// generates the fall off map (island)
 		falloffMap = FallOffGenerator.GenerateFalloffMap(mapChunkSize);
 	}
 
@@ -133,8 +134,9 @@ public class MapGenerator : MonoBehaviour {
         Color[] colourMap = new Color[mapChunkSize * mapChunkSize];
 		for (int y = 0; y < mapChunkSize; y++) {
 			for (int x = 0; x < mapChunkSize; x++) {
+				// if falloff map is used
 				if (useFalloff) {
-					noiseMap[x,y] = Mathf.Clamp01(noiseMap[x,y] - falloffMap[x,y]);
+					noiseMap[x,y] = Mathf.Clamp01(noiseMap[x,y] - falloffMap[x,y]); 
 				}
 				float currentHeight = noiseMap [x, y];
 				for (int i = 0; i < regions.Length; i++) {
@@ -153,12 +155,15 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 void OnValidate() {
+	// if lacunarity less than 1, set to 1
 	if (lacunarity < 1) {
 		lacunarity = 1;
 	}
+	// if octaves less than 0, set to 0
 	if (octaves < 0 ) {
 		octaves = 0;
 	}
+	
 	falloffMap = FallOffGenerator.GenerateFalloffMap(mapChunkSize);
 }	
 

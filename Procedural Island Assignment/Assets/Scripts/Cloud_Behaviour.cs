@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -83,7 +83,6 @@ public class Cloud_Behaviour : MonoBehaviour
 
     }
 
-    
     // deletes the cloud when it sinks too low
     void SetInactive(){
         if(transform.position.y < 0){
@@ -102,15 +101,15 @@ public class Cloud_Behaviour : MonoBehaviour
     }
 
 
-    // function that shoot the ray, samples the color and location it hits
+    // function that shoots the ray, samples the color and location it hits
     void SampleColourUnder(){
         Debug.DrawRay(transform.position, Vector3.down *300f, Color.red);
 
         ray = new Ray(transform.position, Vector3.down);
 
-        //shoots ray straight down-
+        // shoots ray straight down
         if(Physics.Raycast(ray, out hit, 300f, ground)){
-            //gets the hits exact pixel colour
+            // gets the hits exact pixel colour
             if(hit.collider.tag.Equals("Ground")){
                 texture = hit.transform.GetComponent<Renderer>().material.mainTexture as Texture2D;
                 Vector2 pixelHit = hit.textureCoord;
