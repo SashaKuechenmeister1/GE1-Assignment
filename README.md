@@ -20,13 +20,14 @@ This can be done through changing any of the following:
 
 
 # Instructions for use
-To use this project, you need to press play on Unity. Once started, the player will spawn on an island where they can then walk around and explore.  
-Users can use the WASD controls to move and look around.
+To use this project, you need to press play on Unity. Once started, the player will spawn on an island where they can then walk around and explore. Users can use the WASD controls to move and look around.
 
 # How it works
 This section will discuss how everything works and examine some of the important scripts, models and assets used in this project.  
 
 ## Procedural Mesh
+This is a procedural landmass generated using octaves of perlin noise. The island is highly customizable in the Unity Editor through some custom editor scripts and variables available to the user in the Map Generator.  
+The first option in the Map Generator is having the choice to choose between 4 different modes of generating. The first two generate 2D textures onto a plane (under the mesh), the third one creates a mesh using the first two textures applied to it, and the fourth one takes the third one and applies a falloff map to it (creates the island).
 
 ## Clouds
 
@@ -38,8 +39,7 @@ This section will discuss how everything works and examine some of the important
 
 # List of classes/assets in the project and whether made yourself or modified or if its from a source, please give the reference
 
-As this was my first time ever working with Unity and not having an ideal introduction to the platform, I had to make use of a tutorial to help me.  
-Below you can see what I created myself and what I learned/modified/used from a tutorial.  
+As this was my first time ever working with Unity and not having an ideal introduction to the platform, I had to make use of a tutorial to help me. Below you can see what I created myself and what I learned/modified/used from a tutorial.  
 
 | Class/asset | Source |  
 |-----------|-----------|
