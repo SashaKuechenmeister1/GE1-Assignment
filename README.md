@@ -51,12 +51,17 @@ The main variables that can be changed in the Map Generator are:
 9. auto update bool allows Unity to live update the mesh with each change that the user makes
 10. regions are structs that hold information about the colour map of the generated map. The user can create as many regions as they wish, assign them a colour and height between 0-1 (i.e. 0 = water, 1 = snow peak on a mountain)
 
+<br>
+
 <img src="https://user-images.githubusercontent.com/55543651/146083883-7205888f-c2ff-4f29-8ac0-0a7a59bde20c.jpg" width="300">
 
 
-
-
 ## Clouds
+Generated clouds that spawn off-screen and float over the island. The clouds try to maintain a consistent hover distance and avoid hitting the ground. When the clouds are over land, they start to slowly grow, when they are above the water, they grow quicker. Once they reach their maximum size, they start to shrink until they reach their smallest size, and then repeat the process.
+
+<img src="https://user-images.githubusercontent.com/55543651/146085982-87062793-229c-489c-97f1-fe32ff69a661.jpg" width="300">
+
+
 
 ## Day / Night
 
