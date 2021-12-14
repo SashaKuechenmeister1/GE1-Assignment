@@ -26,13 +26,24 @@ This section will discuss how everything works and examine some of the important
 This is a procedural landmass generated using octaves of perlin noise. The island is highly customizable in the Unity Editor through some custom editor scripts and variables available to the user in the Map Generator.  
 The main variables that can be changed in the Map Generator are:
 1. choice to choose between 4 different modes of generating. The first two (noise and colour) generate 2D textures onto a plane (under the mesh), the third one creates a mesh using the first two textures applied to it, and the fourth one takes the third one and applies a falloff map to it (creates the island).  
+
+<br>
+
 - noise map
-<img src="https://user-images.githubusercontent.com/55543651/146084074-a1edb40e-4849-4096-b2f4-f6a9af8a1ed6.jpg" width="100">
+<img src="https://user-images.githubusercontent.com/55543651/146084074-a1edb40e-4849-4096-b2f4-f6a9af8a1ed6.jpg" width="200">
+
+<br>
 
 - colour map
-![d9f00db2-586c-44a1-93d7-429366de9bfe](https://user-images.githubusercontent.com/55543651/146084098-81562bbb-8591-4f6e-a018-85c6b5e29adb.jpg)
+<img src="https://user-images.githubusercontent.com/55543651/146084098-81562bbb-8591-4f6e-a018-85c6b5e29adb.jpg" width="200">
+
+<br>
+
 - falloff map
-![826fab8f-930a-401c-87a8-e566ab1b50c0](https://user-images.githubusercontent.com/55543651/146084085-484a3918-d483-4513-8282-85f1de2cd951.jpg)
+<img src="https://user-images.githubusercontent.com/55543651/146084085-484a3918-d483-4513-8282-85f1de2cd951.jpg" width="200">
+
+<br>
+
 2. the Noise scale which essentially zooms in and out of the noise map created.  
 3. the Octaves of Noise, this decides how many octaves of noise will be stacked on top of each other.  
 4. lacunarity which allows the user to increase the frequency / level of detail per octave.  
