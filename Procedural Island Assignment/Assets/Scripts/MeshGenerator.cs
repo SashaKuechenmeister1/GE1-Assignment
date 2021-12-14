@@ -6,6 +6,7 @@ public static class MeshGenerator {
 
 	// function that creates mesh data which can be applied to a mesh in the MeshData class
 	public static MeshData GenerateTerrainMesh(float[,] heightMap, float heightMultiplier, AnimationCurve _heightCurve, int levelOfDetail) {
+		// create a new animation curve to pass in the heightcurve keys
 		AnimationCurve heightCurve = new AnimationCurve (_heightCurve.keys);
 
 		// gets width and height of the mesh data that is applied to the mesh in the Mesh Data Class

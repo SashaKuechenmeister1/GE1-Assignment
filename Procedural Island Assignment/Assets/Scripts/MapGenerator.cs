@@ -43,8 +43,9 @@ public class MapGenerator : MonoBehaviour {
 
 	float[,] falloffMap; // used to create an island rather than a square landmass
 
-
+	// queue for mapdata
 	Queue<MapThreadInfo<MapData>> mapDataThreadInfoQueue = new Queue<MapThreadInfo<MapData>>();
+	// queue for meshdata
 	Queue<MapThreadInfo<MeshData>> meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
 
 	void Awake() {
@@ -53,7 +54,7 @@ public class MapGenerator : MonoBehaviour {
 
 	public void DrawMapInEditor() {
 		MapData mapData = GenerateMapData(Vector2.zero);
-		// allows user to switch between viewing NoiseMap and ColourMap in Unity
+		// allows user to switch between viewing NoiseMap, ColourMap, Mesh and FalloffMap in Unity
 		MapDisplay display = FindObjectOfType<MapDisplay> ();
 		if (drawMode == DrawMode.NoiseMap) {
 			display.DrawTexture (TextureGenerator.TextureFromHeightMap (mapData.heightMap));
@@ -69,20 +70,27 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 
+	// requests map data
 	public void RequestMapData(Vector2 centre, Action<MapData> callback) {
+		// represents the mapdata thread with the callback parameter
 		ThreadStart threadStart = delegate {
 			MapDataThread(centre, callback);
 		};
+		// starts new thread
 		new Thread(threadStart).Start ();
 	}
 
 	void MapDataThread(Vector2 centre, Action<MapData> callback) {
+		// passes in the generated map data
 		MapData mapData = GenerateMapData (centre);
-		lock (mapDataThreadInfoQueue) { //when one thread reaches this point while its executing this code, no other thread can execute it aswell, it will have to wait its turn.
+		// when one thread reaches this point while its executing this, no other thread can execute it as well, it will have to wait its turn.
+		lock (mapDataThreadInfoQueue) { 
+			// adds a new map thread info of type mapdata
 			mapDataThreadInfoQueue.Enqueue(new MapThreadInfo<MapData> (callback, mapData));
 		}
 	}
 
+	// request mesh data
 	public void RequestMeshData(MapData mapData, int lod, Action<MeshData> callback) {
     	ThreadStart threadStart = delegate {
         	MeshDataThread(mapData, lod, callback);
@@ -91,11 +99,15 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	void MeshDataThread(MapData mapData, int lod, Action<MeshData> callback) {
-		MeshData meshData = MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, lod); //
-		lock (meshDataThreadInfoQueue) { //when one thread reaches this point while its executing this code, no other thread can execute it aswell, it will have to wait its turn.
+		// passes in the generated terrain mesh
+		MeshData meshData = MeshGenerator.GenerateTerrainMesh(mapData.heightMap, meshHeightMultiplier, meshHeightCurve, lod); 
+		// when one thread reaches this point while its executing this code, no other thread can execute it as well, it will have to wait its turn.
+		lock (meshDataThreadInfoQueue) { 
+			// adds a new map thread info of type meshdata
 			meshDataThreadInfoQueue.Enqueue(new MapThreadInfo<MeshData> (callback, meshData));
 		}
 	} 
+
 
 	void Update() {
 		if (mapDataThreadInfoQueue.Count > 0) {
@@ -150,6 +162,7 @@ void OnValidate() {
 	falloffMap = FallOffGenerator.GenerateFalloffMap(mapChunkSize);
 }	
 
+	// handles both mapdata and meshdata
 	struct MapThreadInfo<T> {
 		public readonly Action<T> callback;
 		public readonly T parameter;

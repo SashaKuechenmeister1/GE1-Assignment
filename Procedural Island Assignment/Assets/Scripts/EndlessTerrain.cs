@@ -9,6 +9,7 @@ public class EndlessTerrain : MonoBehaviour {
 	const float viewerMove = 25f;
 	const float sqrViewerMove = viewerMove * viewerMove;
 
+	// array containing level of detail info
 	public LODInfo[] detailLevels;
 
 	// how far the viewer can see
@@ -104,7 +105,7 @@ public class EndlessTerrain : MonoBehaviour {
 		bool mapDataReceived;
 		int previousLODIndex = -1;
 
-		// terrain chunk constructor takes in coordinate, size, level of detail
+		// terrain chunk constructor
 		public TerrainChunk(Vector2 coord, int size, LODInfo[] detailLevels, Transform parent, Material material) {
 			this.detailLevels = detailLevels;
 
@@ -115,8 +116,11 @@ public class EndlessTerrain : MonoBehaviour {
 			Vector3 positionV3 = new Vector3(position.x,0,position.y);
 
 			meshObject = new GameObject("Terrain Chunk");
+			// adds mesh renderer component
 			meshRenderer = meshObject.AddComponent<MeshRenderer>();
+			// adds mesh filter component
 			meshFilter = meshObject.AddComponent<MeshFilter>();
+			// adds mesh collider component
 			meshCollider = meshObject.AddComponent<MeshCollider>();
 			meshRenderer.material = material;
 
@@ -131,7 +135,7 @@ public class EndlessTerrain : MonoBehaviour {
 			for (int i = 0; i < detailLevels.Length; i++) {
 				lodMeshes[i] = new LODMesh(detailLevels[i].lod, UpdateTerrainChunk);
 			}
-
+			// request map data from mapgenerator
 			mapGenerator.RequestMapData(position, OnMapDataReceived);
 		}
 
@@ -196,11 +200,14 @@ public class EndlessTerrain : MonoBehaviour {
 
 	}
 
-	// Fetches its own mesh from the MapGenerator
+	// class which fetches its own mesh from the MapGenerator
 	class LODMesh {
 		public Mesh mesh;
+		// checks whether or not the mesh has been requested
 		public bool hasRequestedMesh;
+		// checks if mesh has been received
 		public bool hasMesh;
+		// level of detail of this current mesh
 		int lod;
 		System.Action updateCallback;
 
@@ -210,12 +217,14 @@ public class EndlessTerrain : MonoBehaviour {
 		}
 
 		void OnMeshDataReceived(MeshData meshData) {
+			// sets mesh object 
 			mesh = meshData.CreateMesh ();
 			hasMesh = true;
 
 			updateCallback();
 		}
 
+		// tells the class it needs to request its mesh
  		public void RequestMesh(MapData mapData) {
 			hasRequestedMesh = true;
 			mapGenerator.RequestMeshData (mapData, lod, OnMeshDataReceived);
@@ -226,5 +235,5 @@ public class EndlessTerrain : MonoBehaviour {
 	public struct LODInfo {
 		public int lod;
 		public float visibleDstThreshold; //once user is outside this threshold, it will switch over to the next LOD (lower res version)
-	} //
+	}
 }
