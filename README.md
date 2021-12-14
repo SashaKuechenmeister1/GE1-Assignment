@@ -73,7 +73,7 @@ There are two directional lights which rotate around the mesh. One is the moon, 
 
 # List of classes/assets in the project and whether made yourself or modified or if its from a source, please give the reference
 
-As this was my first time ever working with Unity and not having an ideal introduction to the platform, I had to make use of a tutorial to help me. Below you can see what I created myself and what I learned/modified/used from a tutorial.  
+As this was my first time ever working with Unity and coding in C#, I had to make use of a tutorial to help me. Below you can see what I created myself and what I learned/modified/used from a tutorial.  
 
 | Class/asset | Source |  
 |-----------|-----------|
