@@ -27,6 +27,7 @@ This is a procedural landmass generated using octaves of perlin noise. The islan
 The main variables that can be changed in the Map Generator are:
 1. choice to choose between 4 different modes of generating. The first two (noise and colour) generate 2D textures onto a plane (under the mesh), the third one creates a mesh using the first two textures applied to it, and the fourth one takes the third one and applies a falloff map to it (creates the island).  
 - noise map
+<img = src="https://user-images.githubusercontent.com/55543651/146084074-a1edb40e-4849-4096-b2f4-f6a9af8a1ed6.jpg" width="100">
 ![41b96e8b-1a04-4613-9bae-9019a87ac070](https://user-images.githubusercontent.com/55543651/146084074-a1edb40e-4849-4096-b2f4-f6a9af8a1ed6.jpg)
 - colour map
 ![d9f00db2-586c-44a1-93d7-429366de9bfe](https://user-images.githubusercontent.com/55543651/146084098-81562bbb-8591-4f6e-a018-85c6b5e29adb.jpg)
