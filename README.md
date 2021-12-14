@@ -27,17 +27,14 @@ This is a procedural landmass generated using octaves of perlin noise. The islan
 The main variables that can be changed in the Map Generator are:
 1. choice to choose between 4 different modes of generating. The first two (noise and colour) generate 2D textures onto a plane (under the mesh), the third one creates a mesh using the first two textures applied to it, and the fourth one takes the third one and applies a falloff map to it (creates the island).  
 
-
-
   - noise map
 <img src="https://user-images.githubusercontent.com/55543651/146084074-a1edb40e-4849-4096-b2f4-f6a9af8a1ed6.jpg" width="200">
 
-
-
   - colour map
-<img src="https://user-images.githubusercontent.com/55543651/146084098-81562bbb-8591-4f6e-a018-85c6b5e29adb.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/55543651/146084986-334fe9c9-865c-442b-8497-e64913d6258c.jpg" width="200">
 
-
+  - mesh map
+<img src="https://user-images.githubusercontent.com/55543651/146084085-484a3918-d483-4513-8282-85f1de2cd951.jpg" width="200">
 
   - falloff map
 <img src="https://user-images.githubusercontent.com/55543651/146084085-484a3918-d483-4513-8282-85f1de2cd951.jpg" width="200">
@@ -54,7 +51,7 @@ The main variables that can be changed in the Map Generator are:
 9. auto update bool allows Unity to live update the mesh with each change that the user makes
 10. regions are structs that hold information about the colour map of the generated map. The user can create as many regions as they wish, assign them a colour and height between 0-1 (i.e. 0 = water, 1 = snow peak on a mountain)
 
-![f8ffd400-d1c5-461f-98f7-f90b520c303b](https://user-images.githubusercontent.com/55543651/146083883-7205888f-c2ff-4f29-8ac0-0a7a59bde20c.jpg)
+<img src="https://user-images.githubusercontent.com/55543651/146083883-7205888f-c2ff-4f29-8ac0-0a7a59bde20c.jpg" width="300">
 
 
 
