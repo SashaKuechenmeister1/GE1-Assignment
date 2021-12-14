@@ -64,8 +64,10 @@ Generated clouds that spawn off-screen and float over the island. The clouds try
 
 
 ## Day / Night
+There are two directional lights which rotate around the mesh. One is the moon, and the other is the sun. The sun is linked to the procedural skybox, resulting in some spectacular sunsets and sunrises.
 
-#
+<img src="https://user-images.githubusercontent.com/55543651/146086476-1b4e6ea3-b819-419b-b822-4fd392537a56.png" width="300">
+
 
 
 
