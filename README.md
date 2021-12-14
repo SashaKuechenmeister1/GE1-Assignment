@@ -53,7 +53,7 @@ public void DrawMapInEditor() {
   - colour map
 <img src="https://user-images.githubusercontent.com/55543651/146085063-7327f1f7-225b-487d-b557-913d174ad3d6.jpg" width="200">
 
-  - mesh map
+  - mesh
 <img src="https://user-images.githubusercontent.com/55543651/146084986-334fe9c9-865c-442b-8497-e64913d6258c.jpg" width="200">
 
   - falloff map
@@ -93,12 +93,58 @@ public struct TerrainType {
 ## Clouds
 Generated clouds that spawn off-screen and float over the island. The clouds try to maintain a consistent hover distance and avoid hitting the ground. When the clouds are over land, they start to slowly grow, when they are above the water, they grow quicker. Once they reach their maximum size, they start to shrink until they reach their smallest size, and then repeat the process.
 
+The code below shows how the shrinking / growing process for the clouds was made
+```cs
+void Update()
+    {
+        model.transform.localScale = new Vector3(cloudSize, cloudSize, cloudSize);
+        AvoidGround();
+        SetInactive();
+        SampleColourUnder();
+        
+        //if the cloud hits max size it will start shrinking
+        if(cloudSize >= cloudMaxSize){
+            shrink = true;
+        }
+
+        // happens while the cloud is shrinking
+        if(shrink){
+
+            // clouds size shrinks
+            cloudSize -= shrinkRate *Time.deltaTime;
+
+            // flips shrink when cloud hit minimum size
+            if(cloudSize <= cloudMinSize){
+                shrink = false; 
+            }
+        }
+	else{
+            // slowly grows cloud while the cloud isn't shrinking
+            cloudSize += (growRate/15f) * Time.deltaTime;
+        }
+
+
+    }
+```
+
 <img src="https://user-images.githubusercontent.com/55543651/146085982-87062793-229c-489c-97f1-fe32ff69a661.jpg" width="300">
 
 
 
 ## Day / Night
 There are two directional lights which rotate around the mesh. One is the moon, and the other is the sun. The sun is linked to the procedural skybox, resulting in some spectacular sunsets and sunrises.
+
+The code used for rotating the two directional lights around the mesh
+```cs
+void Update()
+{
+	// rotates the sun and moon around the mesh
+	transform.RotateAround(mesh.transform.position, Vector3.forward, 10f * Time.deltaTime);
+
+	// keeps the sun and moon light looking at the mesh
+	transform.LookAt(mesh.transform.position);
+}
+```
 
 <img src="https://user-images.githubusercontent.com/55543651/146086476-1b4e6ea3-b819-419b-b822-4fd392537a56.png" width="300">
 
