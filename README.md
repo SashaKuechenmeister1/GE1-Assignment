@@ -51,6 +51,33 @@ The main variables that can be changed in the Map Generator are:
 9. auto update bool allows Unity to live update the mesh with each change that the user makes
 10. regions are structs that hold information about the colour map of the generated map. The user can create as many regions as they wish, assign them a colour and height between 0-1 (i.e. 0 = water, 1 = snow peak on a mountain)
 
+```
+// enum which holds the different run modes: (2D noise map, 2D colour map, 3D Mesh, 3D Falloff map)
+public enum DrawMode {NoiseMap, ColourMap, Mesh, FalloffMap};
+// current mode the component is in
+public DrawMode drawMode;
+
+public float noiseScale; // number that determines at what distance to have perlin noise
+public int octaves; // number that determines the levels of detail
+[Range(0,1)] // changes persistance into a slider
+public float persistance; // number that determines how much detail is added or removed at each octave (adjusts frequency)
+public float lacunarity; // number that determines how much each octave contributes to the overall shape (adjusts amplitude)
+
+public int seed;
+public Vector2 offset; // vector for offsetting the seed
+
+public bool useFalloff; // option to use falloff map
+
+public float meshHeightMultiplier; // how much the Y-axis of the mesh is multiplied by
+public AnimationCurve meshHeightCurve; // curve that allows for customization of the height multiplication
+
+public bool autoUpdate; // saves last changed configuration
+
+
+public TerrainType[] regions; // allows for different terrain types
+
+```
+
 <br>
 
 <img src="https://user-images.githubusercontent.com/55543651/146083883-7205888f-c2ff-4f29-8ac0-0a7a59bde20c.jpg" width="300">
@@ -68,7 +95,9 @@ There are two directional lights which rotate around the mesh. One is the moon, 
 
 <img src="https://user-images.githubusercontent.com/55543651/146086476-1b4e6ea3-b819-419b-b822-4fd392537a56.png" width="300">
 
-
+## Endless Terrain
+This section was really hard for me to understand and I had to heavily rely on the tutorial mentioned later. However, I found it was a very important part to my project as it allows the viewer to see islands in the distance and in theory if they were to travel across the water it would constantly generate new unique islands for the player to explore.
+Also if falloff map is disabled, the player can walk across the landmass forever.
 
 
 # List of classes/assets in the project and whether made yourself or modified or if its from a source, please give the reference
@@ -112,7 +141,8 @@ I was also quite proud of the Day / Night Cycle even though it was quite simple.
 
 # Proposal submitted earlier can go here:
 
-<br>
+
+# Video
 
 [![Watch the video](https://user-images.githubusercontent.com/55543651/146086958-b58890cd-10d0-4b44-ade3-af266e4cb9aa.png)](https://youtu.be/y8EwBQH6ka4)
 
