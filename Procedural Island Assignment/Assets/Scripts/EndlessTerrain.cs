@@ -36,6 +36,7 @@ public class EndlessTerrain : MonoBehaviour {
 	void Start() {
 		mapGenerator = FindObjectOfType<MapGenerator> ();
 
+		// max view distance is now equal to the last element of detail levels
 		maxViewDst = detailLevels [detailLevels.Length - 1].visibleDstThreshold;
 		chunkSize = MapGenerator.mapChunkSize - 1;
 		// number of chunks visible in the view distance = how many times the chunk size can be divided into the view distance
@@ -98,11 +99,16 @@ public class EndlessTerrain : MonoBehaviour {
 		MeshFilter meshFilter;
 		MeshCollider meshCollider;
 
+		// array for detail levels
 		LODInfo[] detailLevels;
+		// array for level of detail meshes
 		LODMesh[] lodMeshes;
 
+		// stores the received mapdata
 		MapData mapData;
+		// checks if map data received or not
 		bool mapDataReceived;
+
 		int previousLODIndex = -1;
 
 		// terrain chunk constructor
@@ -150,14 +156,19 @@ public class EndlessTerrain : MonoBehaviour {
 		}
 
 
-		// tells the terrain chunk to update itself (find the point i its perimieter that is the closest to viewer positon and find distance between that point and viewer, if  distance is less than maximum view distance, then will make sure mesh obj is enabled. if exceeds maxview dsit will disable)
+		/* tells the terrain chunk to update itself (find the point i its perimeter that is the closest to viewer position 
+		 and find distance between that point and viewer, if  distance is less than maximum view distance, then will make
+		 sure mesh obj is enabled. if exceeds max view distance will disable) */
 		public void UpdateTerrainChunk() {
+			// only runs if map data has been received
 			if (mapDataReceived) {
 				// finds the viewer distance from the nearest edge
 				float viewerDstFromNearestEdge = Mathf.Sqrt(bounds.SqrDistance (viewerPosition));
 				// visibility determined by viewer distance from edge begin equal or less than the maximum view distance
 				bool visible = viewerDstFromNearestEdge <= maxViewDst;
 
+				/* looks at the distance of the viewer from the nearest edge and compares it with the distance
+				threshold of each of the detail levels to determine which one should be displayed */
 				if (visible) {
 					int lodIndex = 0;
 
