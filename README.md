@@ -179,16 +179,17 @@ As this was my first time ever working with Unity and coding in C#, I had to mak
 
 # References
 
-https://www.youtube.com/playlist?list=PLFt_AvWsXl0eBW2EiBtl_sxmDtSgZBxB3  
-https://www.red-gate.com/simple-talk/development/dotnet-development/procedural-generation-unity-c/  
-https://gamedevacademy.org/complete-guide-to-procedural-level-generation-in-unity-part-1/  
+Audio - https://mixkit.co/free-stock-video/waves/  
+Tutorial - https://www.youtube.com/playlist?list=PLFt_AvWsXl0eBW2EiBtl_sxmDtSgZBxB3  
+Intro to unity and c# - https://www.red-gate.com/simple-talk/development/dotnet-development/procedural-generation-unity-c/  
 
 # What I am most proud of in the assignment
 
 I am most proud of the clouds generation. I was able to spawn clouds in a given area and have them float over the island. The clouds were able to grow and shrink. When they hit their maximum size, they would start to shrink until they reach their minimum size and then repeat this process.
 I was also quite proud of the Day / Night Cycle even though it was quite simple. It adds another element to the scene by having two directional lights (sun and moon) rotate around the islands mesh. The sun allowed for some awe inspiring sunsets and sunrises.
 
-# Proposal submitted earlier can go here:
+# Future Work
+If I had more time to work or change anything for this project it would be to have a script that generates trees on the island. This would add more complexity to the project as well as creating a more full island as it currently is quite barren. I would also love to create a proper sea with waves rather than the current blue coloured ground. Another thing I would add would be better texture (i.e add sand grains, grass blades, rocks and stones, etc)
 
 
 # Video
