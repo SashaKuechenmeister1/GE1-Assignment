@@ -7,16 +7,13 @@ Student Number: C18404082
 Class Group: TU857/4
 
 # Description of the project
-The goal for my project was to create a procedurally generated island in Unity.  
-The user can change different variables to generate a completely unique island or landmass.  
-This can be done through changing any of the following:  
-1. create different regions (water, grass, snow, etc.)
-2. noise scale
-3. octaves
-4. persistance
-5. lacunarity
-6. seed
-7. height multiplier
+The initial goal for my project was to create a procedurally generated island that a player could wander around and explore. I also wanted to have natures sounds such as birds singing and waves crashing to create a calming environment. After finishing my project I am happy that I was able to achieve all of these plus adding some features such as clouds floating over the island and also having a day and night cycle.  
+Some of the key features of my project include:
+* implementing perlin noise to procedurally generate the island terrain
+* allow a person to use Unity Editor to generate new and unique islands
+* feature immersive audio of birds singing and waves crashing, as well as a soothing background track
+* day and night cycle
+* generating clouds in the sky which are able to shrink/grow
 
 
 # Instructions for use
@@ -27,14 +24,20 @@ This section will discuss how everything works and examine some of the important
 
 ## Procedural Mesh
 This is a procedural landmass generated using octaves of perlin noise. The island is highly customizable in the Unity Editor through some custom editor scripts and variables available to the user in the Map Generator.  
-The first option in the Map Generator is having the choice to choose between 4 different modes of generating. The first two generate 2D textures onto a plane (under the mesh), the third one creates a mesh using the first two textures applied to it, and the fourth one takes the third one and applies a falloff map to it (creates the island).  
+The main variables that can be changed in the Map Generator are:
+1. choice to choose between 4 different modes of generating. The first two generate 2D textures onto a plane (under the mesh), the third one creates a mesh using the first two textures applied to it, and the fourth one takes the third one and applies a falloff map to it (creates the island).  
 
 [insert image]  
 
-The second option is the Noise scale which essentially zooms in and out of the noise map created.  
-The third variable is the Octaves of Noise, this decides how many octaves of noise will be stacked on top of each other.  
-The forth option is lacunarity which allows the user to increase the frequency / level of detail per octave.  
-Persistence is the 5th option which controls the amplitude / level of impact of later octaves.  
+2. the Noise scale which essentially zooms in and out of the noise map created.  
+3. the Octaves of Noise, this decides how many octaves of noise will be stacked on top of each other.  
+4. lacunarity which allows the user to increase the frequency / level of detail per octave.  
+5. Persistence which controls the amplitude / level of impact of later octaves.  
+6. Mesh Height Multiplier which works in tandem with the Mesh Height Curve. All mesh vertices y numbers are multiplied by the height multiplier. The height curve can then limit the multiplication of those y values based on their noise value. Essentially it allows the user to stop things like the water being bumpy
+7. the Seed and Offset can be used to randomise the location of the sample noise.
+8. the offset bool which allows for the generated map to be a landmass or an island (tick yes for island)
+9. auto update bool allows Unity to live update the mesh with each change that the user makes
+10. regions are structs that hold information about the colour map of the generated map. The user can create as many regions as they wish, assign them a colour and height between 0-1 (i.e. 0 = water, 1 = snow peak on a mountain)
 
 [insert image]
 
