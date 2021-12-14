@@ -143,6 +143,11 @@ void Update()
 This section was really hard for me to understand and I had to heavily rely on the tutorial mentioned later. However, I found it was a very important part to my project as it allows the viewer to see islands in the distance and in theory if they were to travel across the water it would constantly generate new unique islands for the player to explore.
 Also if falloff map is disabled, the player can walk across the landmass forever.
 
+## Audio
+All the audio sources were downloaded from a website called mixkit. They were imported into unity and attached to a Game Object called Audio. The three audio tracks are "close sea waves", "forest birds ambience" and "island beat".
+
+<img src="https://user-images.githubusercontent.com/55543651/146089930-545480f1-27df-4218-a396-57848db8845e.jpg" width="400">
+
 
 # List of classes/assets in the project and whether made yourself or modified or if its from a source, please give the reference
 
