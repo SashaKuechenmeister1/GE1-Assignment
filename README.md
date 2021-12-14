@@ -8,21 +8,38 @@ Class Group:
 
 # Description of the project
 The goal for my project was to create a procedurally generated island in Unity.  
-There is an editor section where the user can change different variables to create a completely unique island.  
+The user can change different variables to generate a completely unique island.  
 This can be done through changing any of the following:  
 1. create different regions (water, grass, snow, etc.)
 2. noise scale
 3. octaves
 4. persistance
 5. lacunarity
-6. height multiplier
+6. seed
+7. height multiplier
 
 
 # Instructions for use
+To use this project, you need to press play on Unity. Once started, the player will spawn on an island where they can then walk around and explore.  
+Users can use the WASD controls to move and look around.
 
 # How it works
+This section will discuss how everything works and examine some of the important scripts, models and assets used in this project.  
+
+## Procedural Mesh
+
+## Clouds
+
+## Day / Night
+
+#
+
+
 
 # List of classes/assets in the project and whether made yourself or modified or if its from a source, please give the reference
+
+As this was my first time ever working with Unity and not having an ideal introduction to the platform, I had to make use of a tutorial to help me.  
+Below you can see what I created myself and what I learned/modified/used from a tutorial.  
 
 | Class/asset | Source |  
 |-----------|-----------|
@@ -38,6 +55,7 @@ This can be done through changing any of the following:
 | FallOffGenerator.cs | Followed Tutorial [Procedural Landmass Generation](https://www.youtube.com/playlist?list=PLFt_AvWsXl0eBW2EiBtl_sxmDtSgZBxB3) |   
 | Noise.cs | Followed Tutorial [Procedural Landmass Generation](https://www.youtube.com/playlist?list=PLFt_AvWsXl0eBW2EiBtl_sxmDtSgZBxB3) |    
 | TextureGenerator.cs | Followed Tutorial [Procedural Landmass Generation](https://www.youtube.com/playlist?list=PLFt_AvWsXl0eBW2EiBtl_sxmDtSgZBxB3) |    
+
 
 # References
 
