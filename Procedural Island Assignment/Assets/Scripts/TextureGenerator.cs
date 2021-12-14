@@ -3,7 +3,7 @@ using System.Collections;
 
 public static class TextureGenerator {
 
-	// create a texture out of a 2-dimensional colourMap
+	// create a texture out of a 2D colourMap
 	public static Texture2D TextureFromColourMap(Color[] colourMap, int width, int height) {
 		Texture2D texture = new Texture2D (width, height);
 		texture.filterMode = FilterMode.Point; //fixes blue
@@ -13,7 +13,7 @@ public static class TextureGenerator {
 		return texture;
 	}
 
-	// create a texture out of a 2-dimensional heightMap
+	// create a texture out of a 2D heightMap
 	public static Texture2D TextureFromHeightMap(float[,] heightMap) {
 		int width = heightMap.GetLength (0);
 		int height = heightMap.GetLength (1);

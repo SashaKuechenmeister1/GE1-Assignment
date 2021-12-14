@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Day_Night : MonoBehaviour
 {
-    // mesh the sun and moon light revolve around
+    // mesh which the sun and moon directional light revolve around
     GameObject mesh;
 
     void Start()
@@ -16,7 +16,8 @@ public class Day_Night : MonoBehaviour
     {
         // rotates the sun and moon around the mesh
         transform.RotateAround(mesh.transform.position, Vector3.forward, 10f * Time.deltaTime);
-        // keeps the sun and moon directional light looking at the mesh
+        
+        // keeps the sun and moon light looking down at the mesh
         transform.LookAt(mesh.transform.position);
     }
 }

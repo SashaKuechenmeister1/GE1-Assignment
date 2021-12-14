@@ -10,30 +10,40 @@ public class EndlessTerrain : MonoBehaviour {
 	const float sqrViewerMove = viewerMove * viewerMove;
 
 	public LODInfo[] detailLevels;
-	public static float maxViewDst;
 
+	// how far the viewer can see
+	public static float maxViewDst;
 	public Transform viewer;
+
 	public Material mapMaterial;
 
 	public static Vector2 viewerPosition;
 	Vector2 viewerPositionOld;
 	static MapGenerator mapGenerator;
+
 	int chunkSize;
+	// checks how many chunks are visible based on the chunk size and max view distance
 	int chunksVisibleInViewDst;
 
+	// dictionary of all the cooridnates and terrain chunks to prevent duplicates
 	Dictionary<Vector2, TerrainChunk> terrainChunkDictionary = new Dictionary<Vector2, TerrainChunk>();
+
+	// list of terrain chunks
 	static List<TerrainChunk> terrainChunksVisibleLastUpdate = new List<TerrainChunk>();
+
 
 	void Start() {
 		mapGenerator = FindObjectOfType<MapGenerator> ();
 
 		maxViewDst = detailLevels [detailLevels.Length - 1].visibleDstThreshold;
 		chunkSize = MapGenerator.mapChunkSize - 1;
+		// number of chunks visible in the view distance = how many times the chunk size can be divided into the view distance
 		chunksVisibleInViewDst = Mathf.RoundToInt(maxViewDst / chunkSize);
 
 		UpdateVisibleChunks ();
 	}
 
+	// updates viewer position every frame
 	void Update() {
 		viewerPosition = new Vector2 (viewer.position.x, viewer.position.z) / scale;
 
@@ -44,24 +54,31 @@ public class EndlessTerrain : MonoBehaviour {
 	}
 		
 	void UpdateVisibleChunks() {
-
+		// loops through all the terrain chunks visible in the last update and sets them to invisible
 		for (int i = 0; i < terrainChunksVisibleLastUpdate.Count; i++) {
 			terrainChunksVisibleLastUpdate [i].SetVisible (false);
 		}
+		// clears the list
 		terrainChunksVisibleLastUpdate.Clear ();
 			
+		// gets coordinate X and Y of where the character is standing on
 		int currentChunkCoordX = Mathf.RoundToInt (viewerPosition.x / chunkSize);
 		int currentChunkCoordY = Mathf.RoundToInt (viewerPosition.y / chunkSize);
-
+		// loops through all the surrounding chunks
 		for (int yOffset = -chunksVisibleInViewDst; yOffset <= chunksVisibleInViewDst; yOffset++) {
 			for (int xOffset = -chunksVisibleInViewDst; xOffset <= chunksVisibleInViewDst; xOffset++) {
 				Vector2 viewedChunkCoord = new Vector2 (currentChunkCoordX + xOffset, currentChunkCoordY + yOffset);
 
 				if (terrainChunkDictionary.ContainsKey (viewedChunkCoord)) {
+					// updates an already generated terrain chunk
 					terrainChunkDictionary [viewedChunkCoord].UpdateTerrainChunk ();
+					if (terrainChunkDictionary [viewedChunkCoord].IsVisible()) {
+						terrainChunksVisibleLastUpdate.Add(terrainChunkDictionary[viewedChunkCoord]);
+					}
 
 				}
 				else {
+					// instantiates a new terrain chunk
 					terrainChunkDictionary.Add (viewedChunkCoord, new TerrainChunk (viewedChunkCoord, chunkSize, detailLevels, transform, mapMaterial));
 				}
 
@@ -69,6 +86,7 @@ public class EndlessTerrain : MonoBehaviour {
 		}
 	}
 
+	// class to represent the terrain chunk object
 	public class TerrainChunk {
 
 		GameObject meshObject;
@@ -86,11 +104,14 @@ public class EndlessTerrain : MonoBehaviour {
 		bool mapDataReceived;
 		int previousLODIndex = -1;
 
+		// terrain chunk constructor takes in coordinate, size, level of detail
 		public TerrainChunk(Vector2 coord, int size, LODInfo[] detailLevels, Transform parent, Material material) {
 			this.detailLevels = detailLevels;
 
 			position = coord * size;
+			// used to find the point on perimeter closest to another point
 			bounds = new Bounds(position,Vector2.one * size);
+			// creates the position in a 3D space
 			Vector3 positionV3 = new Vector3(position.x,0,position.y);
 
 			meshObject = new GameObject("Terrain Chunk");
@@ -102,6 +123,8 @@ public class EndlessTerrain : MonoBehaviour {
 			meshObject.transform.position = positionV3 * scale;
 			meshObject.transform.parent = parent;
 			meshObject.transform.localScale = Vector3.one * scale;
+
+			// default state of terrain chunk is invisible, to let the update method determine whether it should become visible
 			SetVisible(false);
 
 			lodMeshes = new LODMesh[detailLevels.Length];
@@ -123,10 +146,12 @@ public class EndlessTerrain : MonoBehaviour {
 		}
 
 
-
+		// tells the terrain chunk to update itself (find the point i its perimieter that is the closest to viewer positon and find distance between that point and viewer, if  distance is less than maximum view distance, then will make sure mesh obj is enabled. if exceeds maxview dsit will disable)
 		public void UpdateTerrainChunk() {
 			if (mapDataReceived) {
+				// finds the viewer distance from the nearest edge
 				float viewerDstFromNearestEdge = Mathf.Sqrt(bounds.SqrDistance (viewerPosition));
+				// visibility determined by viewer distance from edge begin equal or less than the maximum view distance
 				bool visible = viewerDstFromNearestEdge <= maxViewDst;
 
 				if (visible) {
@@ -159,10 +184,12 @@ public class EndlessTerrain : MonoBehaviour {
 			}
 		}
 
+		// method sets the mesh object to visible if true
 		public void SetVisible(bool visible) {
 			meshObject.SetActive (visible);
 		}
 
+		// method finds out if the mesh object is visible
 		public bool IsVisible() {
 			return meshObject.activeSelf;
 		}
