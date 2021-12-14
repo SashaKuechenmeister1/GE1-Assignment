@@ -27,31 +27,35 @@ This is a procedural landmass generated using octaves of perlin noise. The islan
 The main variables that can be changed in the Map Generator are:
 1. choice to choose between 4 different modes of generating. The first two (noise and colour) generate 2D textures onto a plane (under the mesh), the third one creates a mesh using the first two textures applied to it, and the fourth one takes the third one and applies a falloff map to it (creates the island).  
 
-```cs
-public void DrawMapInEditor() {
-		MapData mapData = GenerateMapData(Vector2.zero);
-		// allows user to switch between viewing NoiseMap, ColourMap, Mesh and FalloffMap in Unity
-		MapDisplay display = FindObjectOfType<MapDisplay> ();
-		if (drawMode == DrawMode.NoiseMap) {
-			display.DrawTexture (TextureGenerator.TextureFromHeightMap (mapData.heightMap));
-		}
-		else if (drawMode == DrawMode.ColourMap) {
-			display.DrawTexture (TextureGenerator.TextureFromColourMap (mapData.colourMap, mapChunkSize, mapChunkSize));
-		}
-		else if (drawMode == DrawMode.Mesh) {
-			display.DrawMesh (MeshGenerator.GenerateTerrainMesh (mapData.heightMap, meshHeightMultiplier, meshHeightCurve, editorPreviewLOD), TextureGenerator.TextureFromColourMap (mapData.colourMap, mapChunkSize, mapChunkSize));
-		}
-		else if (drawMode == DrawMode.FalloffMap) {
-			display.DrawTexture(TextureGenerator.TextureFromHeightMap(FallOffGenerator.GenerateFalloffMap(mapChunkSize)));
-		}
-	}
-```
 
   - noise map
 <img src="https://user-images.githubusercontent.com/55543651/146084074-a1edb40e-4849-4096-b2f4-f6a9af8a1ed6.jpg" width="200">
 
   - colour map
 <img src="https://user-images.githubusercontent.com/55543651/146085063-7327f1f7-225b-487d-b557-913d174ad3d6.jpg" width="200">
+
+code below creates the different regions through use of colour
+```cs
+// sets colours to designated range (e.g. 0 -> 0.5 = water, 0.5 -> 1 = grass)
+Color[] colourMap = new Color[mapChunkSize * mapChunkSize];
+for (int y = 0; y < mapChunkSize; y++) {
+	for (int x = 0; x < mapChunkSize; x++) {
+		// if falloff map is used
+		if (useFalloff) {
+			noiseMap[x,y] = Mathf.Clamp01(noiseMap[x,y] - falloffMap[x,y]); 
+		}
+		float currentHeight = noiseMap [x, y];
+		for (int i = 0; i < regions.Length; i++) {
+			if (currentHeight >= regions [i].height) {
+				colourMap [y * mapChunkSize + x] = regions [i].colour;
+			}
+			else {
+				break;
+			}
+		}
+	}
+}
+```
 
   - mesh
 <img src="https://user-images.githubusercontent.com/55543651/146084986-334fe9c9-865c-442b-8497-e64913d6258c.jpg" width="200">
