@@ -52,7 +52,7 @@ The main variables that can be changed in the Map Generator are:
 9. auto update bool allows Unity to live update the mesh with each change that the user makes
 10. regions are structs that hold information about the colour map of the generated map. The user can create as many regions as they wish, assign them a colour and a cutoff height between 0-1 (i.e. 0 = water, 1 = snow peak on a mountain)
 
-code below creates the different regions through use of colour
+code below assigns colours to their designate range creating the different regions
 ```cs
 // sets colours to designated range (e.g. 0 -> 0.5 = water, 0.5 -> 1 = grass)
 Color[] colourMap = new Color[mapChunkSize * mapChunkSize];
@@ -75,19 +75,6 @@ for (int y = 0; y < mapChunkSize; y++) {
 }
 ```
 
-Regions struct: 
-```cs
-[System.Serializable]
-public struct TerrainType {
-	// Name of region
-    public string name;
-	// The cutoff height of region
-    public float height;
-	// Colour of region
-    public Color colour;
-}
-
-```
 
 <br>
 
