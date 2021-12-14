@@ -31,10 +31,10 @@ The main variables that can be changed in the Map Generator are:
 <img src="https://user-images.githubusercontent.com/55543651/146084074-a1edb40e-4849-4096-b2f4-f6a9af8a1ed6.jpg" width="200">
 
   - colour map
-<img src="https://user-images.githubusercontent.com/55543651/146084986-334fe9c9-865c-442b-8497-e64913d6258c.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/55543651/146085063-7327f1f7-225b-487d-b557-913d174ad3d6.jpg" width="200">
 
   - mesh map
-<img src="https://user-images.githubusercontent.com/55543651/146084085-484a3918-d483-4513-8282-85f1de2cd951.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/55543651/146084986-334fe9c9-865c-442b-8497-e64913d6258c.jpg" width="200">
 
   - falloff map
 <img src="https://user-images.githubusercontent.com/55543651/146084085-484a3918-d483-4513-8282-85f1de2cd951.jpg" width="200">
