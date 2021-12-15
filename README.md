@@ -25,6 +25,7 @@ This section will discuss how everything works and examine some of the important
 ## Procedural Mesh
 This is a procedural landmass generated using octaves of perlin noise. The island is highly customizable in the Unity Editor through some custom editor scripts and variables available to the user in the Map Generator.  
 The main variables that can be changed in the Map Generator are:
+<<<<<<< Updated upstream
 1. choice to choose between 4 different modes of generating. The first two (noise and colour) generate 2D textures onto a plane (under the mesh), the third one creates a mesh using the first two textures applied to it, and the fourth one takes the third one and applies a falloff map to it (creates the island).  
 
 
@@ -41,6 +42,11 @@ The main variables that can be changed in the Map Generator are:
 <img src="https://user-images.githubusercontent.com/55543651/146084085-484a3918-d483-4513-8282-85f1de2cd951.jpg" width="200">
 
 <br>
+=======
+1. choice to choose between 4 different modes of generating. The first two generate 2D textures onto a plane (under the mesh), the third one creates a mesh using the first two textures applied to it, and the fourth one takes the third one and applies a falloff map to it (creates the island).  
+
+[insert image]  
+>>>>>>> Stashed changes
 
 2. the Noise scale which essentially zooms in and out of the noise map created.  
 3. the Octaves of Noise, this decides how many octaves of noise will be stacked on top of each other.  
@@ -50,6 +56,7 @@ The main variables that can be changed in the Map Generator are:
 7. the Seed and Offset can be used to randomise the location of the sample noise.
 8. the offset bool which allows for the generated map to be a landmass or an island (tick yes for island)
 9. auto update bool allows Unity to live update the mesh with each change that the user makes
+<<<<<<< Updated upstream
 10. regions are structs that hold information about the colour map of the generated map. The user can create as many regions as they wish, assign them a colour and a cutoff height between 0-1 (i.e. 0 = water, 1 = snow peak on a mountain)
 
 code below assigns colours to their designate range creating the different regions
@@ -147,11 +154,29 @@ Also if falloff map is disabled, the player can walk across the landmass forever
 All the audio sources were downloaded from a website called mixkit. They were imported into unity and attached to a Game Object called Audio. The three audio tracks are "close sea waves", "forest birds ambience" and "island beat".
 
 <img src="https://user-images.githubusercontent.com/55543651/146089930-545480f1-27df-4218-a396-57848db8845e.jpg" width="400">
+=======
+10. regions are structs that hold information about the colour map of the generated map. The user can create as many regions as they wish, assign them a colour and height between 0-1 (i.e. 0 = water, 1 = snow peak on a mountain)
+
+[insert image]
+
+
+
+## Clouds
+
+## Day / Night
+
+#
+
+>>>>>>> Stashed changes
 
 
 # List of classes/assets in the project and whether made yourself or modified or if its from a source, please give the reference
 
+<<<<<<< Updated upstream
 As this was my first time ever working with Unity and coding in C#, I had to make use of a tutorial to help me. Below you can see what I created myself and what I learned/modified/used from a tutorial.  
+=======
+As this was my first time ever working with Unity and not having an ideal introduction to the platform, I had to make use of a tutorial to help me. Below you can see what I created myself and what I learned/modified/used from a tutorial.  
+>>>>>>> Stashed changes
 
 | Class/asset | Source |  
 |-----------|-----------|
@@ -188,6 +213,7 @@ Intro to unity and c# - https://www.red-gate.com/simple-talk/development/dotnet-
 I am most proud of the clouds generation. I was able to spawn clouds in a given area and have them float over the island. The clouds were able to grow and shrink. When they hit their maximum size, they would start to shrink until they reach their minimum size and then repeat this process.
 I was also quite proud of the Day / Night Cycle even though it was quite simple. It adds another element to the scene by having two directional lights (sun and moon) rotate around the islands mesh. The sun allowed for some awe inspiring sunsets and sunrises.
 
+<<<<<<< Updated upstream
 # Future Work
 If I had more time to work or change anything for this project it would be to have a script that generates trees on the island. This would add more complexity to the project as well as creating a more full island as it currently is quite barren. I would also love to create a proper sea with waves rather than the current blue coloured ground. Another thing I would add would be better texture (i.e add sand grains, grass blades, rocks and stones, etc)
 
@@ -197,3 +223,6 @@ If I had more time to work or change anything for this project it would be to ha
 [![](https://user-images.githubusercontent.com/55543651/146086958-b58890cd-10d0-4b44-ade3-af266e4cb9aa.png)](https://youtu.be/y8EwBQH6ka4)
 
 
+=======
+# Proposal submitted earlier can go here:
+>>>>>>> Stashed changes
