@@ -174,7 +174,7 @@ As this was my first time ever working with Unity and coding in C#, I had to mak
 | Player | Self Made | 
 | Audio | Downloaded Audio source from "Mixkit.com" | 
 | Cloud Prefab | Self Made | 
-| Move_Cloud.cs | Self Made | 
+| Tree Prefab | Self Made | 
 
 
 # References
