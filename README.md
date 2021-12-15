@@ -194,6 +194,6 @@ If I had more time to work or change anything for this project it would be to ha
 
 # Video
 
-[![Watch the video](https://user-images.githubusercontent.com/55543651/146086958-b58890cd-10d0-4b44-ade3-af266e4cb9aa.png)](https://youtu.be/y8EwBQH6ka4)
+[![](https://user-images.githubusercontent.com/55543651/146086958-b58890cd-10d0-4b44-ade3-af266e4cb9aa.png)](https://youtu.be/y8EwBQH6ka4)
 
 
