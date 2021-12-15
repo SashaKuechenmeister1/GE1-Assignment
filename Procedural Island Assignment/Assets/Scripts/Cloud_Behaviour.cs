@@ -11,7 +11,7 @@ public class Cloud_Behaviour : MonoBehaviour
     // minimum size clouds will shrink to before growing again
     public float cloudMinSize;
 
-    // rate at which clouds grow
+    // rate at which the clouds grow
     public float growRate; 
     // rate at which the clouds shrink
     public float shrinkRate;
